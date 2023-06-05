@@ -1,4 +1,5 @@
 import { Component } from "react";
+import '@fontsource-variable/montserrat';
 class App extends Component {
   render() {
     return (
