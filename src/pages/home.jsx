@@ -18,15 +18,15 @@ class Home extends Component {
   }
 
   componentDidMount() {
-    fetch("https://jsonplaceholder.typicode.com/users/")
+    fetch("https://dummyjson.com/users/?limit=99")
       .then((response) => response.json())
       .then((response) =>
         this.setState(
           () => {
-            return { users: response };
+            return { users: response.users };
           },
           () => {
-            console.log(response);
+            console.log(response.users);
           }
         )
       );
