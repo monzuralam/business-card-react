@@ -1,4 +1,4 @@
-import React, { Component } from "react";
+import { Component } from "react";
 import Card from "../components/card/card";
 class Home extends Component {
   constructor() {
@@ -36,6 +36,29 @@ class Home extends Component {
     const { users } = this.state;
     return (
       <>
+        <div className="container mx-auto py-6">
+          <input
+            type="search"
+            name="search"
+            className="search-box border px-4 py-3"
+            placeholder="Search Cards"
+            onChange={(event) => {
+              console.log(event.target.value);
+              const searchString = event.target.value.toLocaleLowerCase();
+              // filter cards
+              const filterCards = this.state.users.filter((user) => {
+                let fullName = user.firstName + " " + user.lastName;
+                fullName.toLocaleLowerCase();
+                console.log(fullName);
+                return fullName.includes(searchString);
+              });
+
+              this.setState(() => {
+                return { users: filterCards };
+              });
+            }}
+          />
+        </div>
         <div className="container mx-auto py-6">
           <div className="grid grid-cols-1 md:grid-cols-3 gap-x-0 gap-y-4 md:gap-x-4 md:gap-y-4">
             {users.map((user) => {
