@@ -14,6 +14,7 @@ class Home extends Component {
           website: "example.com",
         },
       ],
+      searchField: "",
     };
   }
 
@@ -33,7 +34,14 @@ class Home extends Component {
   }
 
   render() {
-    const { users } = this.state;
+    const { users, searchField } = this.state;
+    // filter cards
+    const filterCards = users.filter((user) => {
+      let fullName = user.firstName + " " + user.lastName;
+      console.log(fullName);
+      return fullName.toLocaleLowerCase().includes(searchField);
+    });
+
     return (
       <>
         <div className="container mx-auto py-6">
@@ -43,25 +51,16 @@ class Home extends Component {
             className="search-box border px-4 py-3"
             placeholder="Search Cards"
             onChange={(event) => {
-              console.log(event.target.value);
-              const searchString = event.target.value.toLocaleLowerCase();
-              // filter cards
-              const filterCards = this.state.users.filter((user) => {
-                let fullName = user.firstName + " " + user.lastName;
-                fullName.toLocaleLowerCase();
-                console.log(fullName);
-                return fullName.includes(searchString);
-              });
-
+              const searchField = event.target.value.toLocaleLowerCase();
               this.setState(() => {
-                return { users: filterCards };
+                return { searchField };
               });
             }}
           />
         </div>
         <div className="container mx-auto py-6">
           <div className="grid grid-cols-1 md:grid-cols-3 gap-x-0 gap-y-4 md:gap-x-4 md:gap-y-4">
-            {users.map((user) => {
+            {filterCards.map((user) => {
               return <Card data={user} key={user?.id} />;
             })}
           </div>
