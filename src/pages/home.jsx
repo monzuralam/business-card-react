@@ -33,8 +33,20 @@ class Home extends Component {
       );
   }
 
+  /**
+   * On Search Change function
+   * @param {*} event
+   */
+  onSearchChange = (event) => {
+    const searchField = event.target.value.toLocaleLowerCase();
+    this.setState(() => {
+      return { searchField };
+    });
+  };
+
   render() {
     const { users, searchField } = this.state;
+    const { onSearchChange } = this;
     // filter cards
     const filterCards = users.filter((user) => {
       let fullName = user.firstName + " " + user.lastName;
@@ -50,12 +62,7 @@ class Home extends Component {
             name="search"
             className="search-box border px-4 py-3"
             placeholder="Search Cards"
-            onChange={(event) => {
-              const searchField = event.target.value.toLocaleLowerCase();
-              this.setState(() => {
-                return { searchField };
-              });
-            }}
+            onChange={onSearchChange}
           />
         </div>
         <div className="container mx-auto py-6">
