@@ -31,7 +31,7 @@ export default class Card extends Component {
       " ";
     return (
       <>
-        <div className="card-item border" key={user.id}>
+        <div className="card-item border" key={user?.id}>
           <div className="card-header bg-gray-700 p-4 flex flex-wrap justify-between items-center">
             <div className="card-header-left">
               <h3 className="text-xl text-white dark:text-black">{name}</h3>
