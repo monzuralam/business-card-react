@@ -1,5 +1,6 @@
 import { Component } from "react";
 import Card from "../components/card/card";
+import Search from "../components/search/search-box.component";
 class Home extends Component {
   constructor() {
     super();
@@ -56,15 +57,7 @@ class Home extends Component {
 
     return (
       <>
-        <div className="container mx-auto py-6">
-          <input
-            type="search"
-            name="search"
-            className="search-box border px-4 py-3"
-            placeholder="Search Cards"
-            onChange={onSearchChange}
-          />
-        </div>
+        <Search onChangeHandler={onSearchChange} placeholder="Search Cards" />
         <div className="container mx-auto py-6">
           <div className="grid grid-cols-1 md:grid-cols-3 gap-x-0 gap-y-4 md:gap-x-4 md:gap-y-4">
             {filterCards.map((user) => {
